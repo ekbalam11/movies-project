@@ -3,9 +3,15 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 
+const indexRoutes = require('./routes/index.routes');
+
 const app = express();
 
 app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
+
+app.use('/', indexRoutes);
 
 
 async function connectDB() {
