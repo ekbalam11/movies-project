@@ -11,7 +11,8 @@ app.use(express.static('public'));
 async function connectDB() {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to the database')
-}
+};
+connectDB().catch(err => console.log(err));
 
 
 //Server init
