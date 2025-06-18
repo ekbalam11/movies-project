@@ -8,6 +8,13 @@ const getHome = async (req, res) => {
 const postNewMovie = async (req, res) => {
     try {
         const { title } = req.body;
+        const moviesTitles = await Movie.find({}, "title").lean();
+        const titlesArray = moviesTitles.map(movie => movie.title.toLowerCase());
+        if (titlesArray.includes(title.toLowerCase())){
+            return res.status(400).json({
+                error: "Esa peli ya existe"
+            })
+        }
 
         if (!title) {
             return res.status(400).json({
@@ -23,7 +30,7 @@ const postNewMovie = async (req, res) => {
     } catch (error) {
         console.error("Error creating movie:", error.message);
         return res.status(500).json({
-           error: "Internal Server Error"
+            error: "Internal Server Error"
         });
     }
 }
