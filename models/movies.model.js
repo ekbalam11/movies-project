@@ -8,7 +8,7 @@ const movieSchema = new Schema({
     },
     year: {
         type: String,
-        required: true,
+        // required: true,
         unique: false
     },
     description: {
@@ -58,7 +58,7 @@ const movieSchema = new Schema({
     },
     is_watched: {
         type: Boolean,
-        required: true,
+        // required: true,
     }
 });
 
